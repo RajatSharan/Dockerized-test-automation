@@ -1,5 +1,7 @@
 package page_test;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page_objects.LoginPageObject;
@@ -22,12 +24,14 @@ public class LoginPageTest extends BaseTest
     LoginPageObject loginPageObject;
     ProductsPageObject productsPageObject;
 
+    private static final Logger logger= LogManager.getLogger(LoginPageTest.class);
+
     @Test
     public void userLoginTest() {
         loginPageObject = new LoginPageObject(driver);      //Creating object of LoginPageObject
         loginPageObject.userLogin("standard_user", "secret_sauce"); // ✅ Ensure WebDriver is initialized
         productsPageObject = new ProductsPageObject(driver);    //Creating object of ProductsPageObject
-        String title = productsPageObject.getTitleOfPage();     //Getting title of the product page
+        String title = productsPageObject.getTitleOfPage(); //Getting title of the product page
         System.out.println(title);                  //Printing title of the product page
 
     }
